@@ -1,7 +1,8 @@
 # Example Bot
 
-This Sapphire bot is to demonstrate the most basic of ways to get slash commands  
-working within the Sapphire framework.  
+This is not officially endorsed or related in any shape way or form to the Sapphire Interaction plugin currently being developed by the developers.  
+This will be made obsolete when the plugin is released, but this serves as a basic example on how to utilise slash commands within your Sapphire bot.  
+Feedback, PR's and suggestions are welcome!  
 
 Before you run the `npm install` command, please rename the `.env-example` file inside the  
 `./src/` folder to `.env` and put in your Discord bot token, then you will need to  
