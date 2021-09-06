@@ -27,7 +27,6 @@ module.exports = class extends Listener {
 
   async printBanner() {
     const success = green("+");
-    const failure = red("-");
 
     const llc = dev ? magentaBright : white;
     const blc = dev ? magenta : blue;
