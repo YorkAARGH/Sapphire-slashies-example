@@ -9,6 +9,7 @@ const { Piece } = require("@sapphire/framework");
 module.exports = class SlashCommand extends Piece {
   constructor(context, options = {}) {
     super(context, options);
+    
     // This is the payload the "deployer" requires to register the commands 
     // at Discord.
     this.commandData = {
@@ -17,6 +18,7 @@ module.exports = class SlashCommand extends Piece {
       options: options.options ?? [],
       defaultPermission: options.defaultPermission ?? true
     };
+
     // This line is a juicy one, and only comes into effect if you're loading
     // both global and guild commands alike, true for guild, false for global.
     this.guildOnly = options.guildOnly ?? false;
