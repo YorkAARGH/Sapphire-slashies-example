@@ -11,7 +11,6 @@ module.exports = class CommandInteraction extends Listener {
     if (!cmd) return;
     try {
       await cmd.run(interaction);
-      this.container.analytics.increment("misaki.totalCommands");
       if (process.env.DEV) this.container.logger.info(`${interaction.user.id} ran slash command ${cmd.commandData.name}`);
     } catch (e) {
       this.container.logger.fatal(e);
