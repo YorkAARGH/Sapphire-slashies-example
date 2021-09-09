@@ -16,13 +16,31 @@ module.exports = class extends Listener {
     super(context, {
       once: true
     });
+
     this.style = dev ? yellow : blue;
   }
 
   async run() {
+    await this.createSlashCommands();
+
     await this.printBanner();
     this.printStoreDebugInformation();
     this.container.client.user.setActivity(`${this.container.client.options.defaultPrefix}help | ${this.container.client.guilds.cache.size} Servers`);
+  }
+
+  async createSlashCommands() {
+    // this function will tell the SlashCommandStore to update the global and guild commands
+    const slashCommandsStore = this.container.stores.get('slashCommands');
+
+    if(slashCommandsStore) {
+      try {
+        console.log(blue("Started refreshing application (/) commands."));
+        await slashCommandsStore.registerCommands();
+        console.log(green("Successfully reloaded application (/) commands."));
+      } catch (err) {
+        console.log(red(err))
+      }
+    }
   }
 
   async printBanner() {

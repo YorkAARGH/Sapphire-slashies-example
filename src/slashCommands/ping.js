@@ -6,7 +6,7 @@
  * https://discordjs.guide/interactions/registering-slash-commands.html#guild-commands
  * 
  */
-const SlashCommand = require("../lib/pieces/SlashCommandPiece.js");
+const SlashCommand = require("../lib/structures/SlashCommandPiece.js");
 
 module.exports = class Ping extends SlashCommand {
   constructor(context) {

@@ -3,7 +3,7 @@ const { SapphireClient, container } = require("@sapphire/framework");
 require("@sapphire/plugin-logger/register");
 
 // This is your custom store.
-const SlashCommandStore = require("./lib/stores/SlashCommandStore.js");
+const SlashCommandStore = require("./lib/structures/SlashCommandStore.js");
 
 class exampleBot extends SapphireClient {
   constructor() {
@@ -12,7 +12,7 @@ class exampleBot extends SapphireClient {
       partials: ["CHANNEL"],
     });
 
-    container.slashCommands = new SlashCommandStore();
+    this.stores.register(new SlashCommandStore());
   }
 }
 

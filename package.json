@@ -5,7 +5,6 @@
   "main": "./src/index.js",
   "scripts": {
     "start": "node ./src/index.js",
-    "postinstall": "node ./src/util/deploySlashCommands.js"
   },
   "keywords": [],
   "author": "York#0001",
