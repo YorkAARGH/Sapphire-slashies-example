@@ -28,6 +28,13 @@ module.exports = class SlashCommandStore extends Store {
       await guild?.commands.set(guildCmds.map(c => c.commandData))
     }
 
+    // Global commands will update over the span of an hour and is discouraged to update on development mode.
+    // https://canary.discord.com/developers/docs/interactions/slash-commands#registering-a-command
+    if(process.env.NODE_ENV === 'development') {
+      this.container.logger.info('Skipped global commands because we\'re in development mode');
+      return;
+    }
+
     // This will register global commands.
     await client?.application?.commands.set(globalCmds.map(c => c.commandData));
   }
