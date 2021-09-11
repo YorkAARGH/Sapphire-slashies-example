@@ -30,9 +30,9 @@ module.exports = class extends Listener {
 
   async createSlashCommands() {
     // this function will tell the SlashCommandStore to update the global and guild commands
-    const slashCommandsStore = this.container.stores.get('slashCommands');
+    const slashCommandsStore = this.container.stores.get("slashCommands");
 
-    if(slashCommandsStore) {
+    if (slashCommandsStore) {
       try {
         console.log(blue("Started refreshing application (/) commands."));
         await slashCommandsStore.registerCommands();

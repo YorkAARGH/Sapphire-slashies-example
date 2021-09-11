@@ -1,5 +1,5 @@
 require("dotenv").config({ path: "./src/.env" });
-const { SapphireClient, container } = require("@sapphire/framework");
+const { SapphireClient } = require("@sapphire/framework");
 require("@sapphire/plugin-logger/register");
 
 // This is your custom store.
