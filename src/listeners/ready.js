@@ -38,7 +38,7 @@ module.exports = class extends Listener {
         await slashCommandsStore.registerCommands();
         console.log(green("Successfully reloaded application (/) commands."));
       } catch (err) {
-        console.log(red(err))
+        console.log(red(err));
       }
     }
   }
