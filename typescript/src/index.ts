@@ -5,7 +5,8 @@ import '@sapphire/plugin-logger/register';
 config({ path: './.env' });
 
 // This is your custom store.
-const { SlashCommandStore } = require('./lib/structures/SlashCommandStore.js');
+import { SlashCommandStore } from 'lib/structures/SlashCommandStore';
+
 
 class exampleBot extends SapphireClient {
 	constructor() {

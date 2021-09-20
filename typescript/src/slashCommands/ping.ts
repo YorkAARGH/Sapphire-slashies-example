@@ -6,7 +6,8 @@
  * https://discordjs.guide/interactions/registering-slash-commands.html#guild-commands
  *
  */
-import { PieceContext } from '@sapphire/framework';
+import type { PieceContext } from '@sapphire/framework';
+import type { CommandInteraction } from 'discord.js';
 import { SlashCommand } from '../lib/structures/SlashCommandPiece';
 
 module.exports = class Ping extends SlashCommand {
@@ -19,10 +20,11 @@ module.exports = class Ping extends SlashCommand {
 		});
 	}
 
-	async run(interaction) {
+	async run(interaction: CommandInteraction) {
 		await interaction.deferReply();
 		const reply = await interaction.editReply('Ping?');
 		await interaction.editReply(
+			// @ts-expect-error code is perfecto
 			`Pong! Latency is ${reply.createdTimestamp - interaction.createdTimestamp}ms. API Latency is ${Math.round(
 				this.container.client.ws.ping
 			)}ms.`

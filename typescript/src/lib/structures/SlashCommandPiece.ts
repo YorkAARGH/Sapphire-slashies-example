@@ -1,5 +1,5 @@
 import { Piece, PieceContext, PieceOptions } from '@sapphire/framework';
-import { ApplicationCommandOption, ApplicationCommandPermissions } from 'discord.js';
+import type { ApplicationCommandOption, ApplicationCommandPermissions } from 'discord.js';
 
 export class SlashCommand extends Piece {
 	public readonly commandData;

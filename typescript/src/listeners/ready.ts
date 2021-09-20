@@ -6,8 +6,9 @@
  * https://github.com/sapphiredev/examples/blob/main/examples/with-javascript/src/listeners/ready.js
  */
 
-import { Listener } from '@sapphire/framework';
-import { version } from '../../package.json';
+import { Listener, PieceContext } from '@sapphire/framework';
+// @ts-ignore
+import { version } from '../../../package.json';
 import { blue, gray, green, magenta, magentaBright, white, yellow, red } from 'colorette';
 
 const dev = process.env.DEV;
@@ -15,7 +16,7 @@ const dev = process.env.DEV;
 export class Ready extends Listener {
 	private readonly style = dev ? yellow : blue;
 
-	constructor(context) {
+	constructor(context: PieceContext) {
 		super(context, {
 			once: true
 		});
@@ -26,7 +27,7 @@ export class Ready extends Listener {
 
 		await this.printBanner();
 		this.printStoreDebugInformation();
-		this.container.client.user.setActivity(
+		this.container.client.user!.setActivity(
 			`${this.container.client.options.defaultPrefix}help | ${this.container.client.guilds.cache.size} Servers`
 		);
 	}
@@ -41,7 +42,7 @@ export class Ready extends Listener {
 				// @ts-expect-error i said stop
 				await slashCommandsStore.registerCommands();
 				console.log(green('Successfully reloaded application (/) commands.'));
-			} catch (err) {
+			} catch (err: any) {
 				console.log(red(err));
 			}
 		}
@@ -88,7 +89,7 @@ export class Ready extends Listener {
 		logger.info(this.styleStore(last, true));
 	}
 
-	styleStore(store, last) {
+	styleStore(store: any, last: any) {
 		return gray(`${last ? '└─' : '├─'} Loaded ${this.style(store.size.toString().padEnd(3, ' '))} ${store.name}.`);
 	}
 }

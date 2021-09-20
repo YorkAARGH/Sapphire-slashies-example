@@ -26,7 +26,7 @@ export class SlashCommandStore extends Store<SlashCommand> {
 		const guilds = await client?.guilds?.fetch(); // retrieves Snowflake & Oauth2Guilds
 		for (let [id] of guilds) {
 			const guild = await client?.guilds?.fetch(id); // gets the guild instances from the cache (fetched before)
-			await guild?.commands.set(guildCmds.map((c) => c.commandData));
+			await guild?.commands.set(guildCmds.map((c: SlashCommand) => c.commandData));
 		}
 
 		// Global commands will update over the span of an hour and is discouraged to update on development mode.
@@ -38,6 +38,6 @@ export class SlashCommandStore extends Store<SlashCommand> {
 		}
 
 		// This will register global commands.
-		await client?.application?.commands.set(globalCmds.map((c) => c.commandData));
+		await client?.application?.commands.set(globalCmds.map((c: SlashCommand) => c.commandData));
 	}
 }
