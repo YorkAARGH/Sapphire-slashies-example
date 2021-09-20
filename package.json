@@ -17,6 +17,7 @@
     "dotenv": "^10.0.0"
   },
   "devDependencies": {
+    "@sapphire/ts-config": "^3.0.0",
     "eslint": "^7.30.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-standard": "^16.0.3",
