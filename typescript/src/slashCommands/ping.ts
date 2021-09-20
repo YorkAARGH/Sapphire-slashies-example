@@ -10,7 +10,7 @@ import type { PieceContext } from '@sapphire/framework';
 import type { CommandInteraction } from 'discord.js';
 import { SlashCommand } from '../lib/structures/SlashCommandPiece';
 
-module.exports = class Ping extends SlashCommand {
+export class Ping extends SlashCommand {
 	constructor(context: PieceContext) {
 		super(context, {
 			name: 'ping',
