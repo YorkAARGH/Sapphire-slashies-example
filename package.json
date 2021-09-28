@@ -2,7 +2,7 @@
   "name": "sapphire-slash-commands",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/index.js",
+  "main": "./javascript/index.js",
   "scripts": {
     "start": "node ./src/index.js"
   },
