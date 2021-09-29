@@ -9,7 +9,6 @@ export class CommandInteraction extends Listener {
 	async run(interaction: Interaction) {
 		if (!interaction.isCommand()) return;
 
-		// @ts-expect-error i dont know how to fix this
 		const cmd = this.container.stores.get('slashCommands').get(interaction.commandName);
 		if (!cmd) return;
 
@@ -20,26 +19,28 @@ export class CommandInteraction extends Listener {
 			this.container.logger.fatal(e);
 
 			if (interaction.replied) {
-				interaction
+				return interaction
 					.followUp({
 						content: `There was a problem with your request.\n\`\`\`${e.message}\`\`\``,
 						ephemeral: true
 					})
 					.catch((e: any) => this.container.logger.fatal('An error occurred following up on an error', e));
-			} else if (interaction.deferred) {
-				interaction
+			}
+			
+			if (interaction.deferred) {
+				return interaction
 					.editReply({
 						content: `There was a problem with your request.\n\`\`\`${e.message}\`\`\``
 					})
 					.catch((e: any) => console.error('An error occurred following up on an error', e));
-			} else {
-				interaction
-					.reply({
-						content: `There was a problem with your request.\n\`\`\`${e.message}\`\`\``,
-						ephemeral: true
-					})
-					.catch((e: any) => this.container.logger.fatal('An error occurred replying on an error', e));
 			}
+			
+			return interaction
+			.reply({
+					content: `There was a problem with your request.\n\`\`\`${e.message}\`\`\``,
+				ephemeral: true
+			})
+			.catch((e: any) => this.container.logger.fatal('An error occurred replying on an error', e));
 		}
 	}
 }

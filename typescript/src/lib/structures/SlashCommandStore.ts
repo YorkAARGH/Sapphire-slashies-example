@@ -19,14 +19,13 @@ export class SlashCommandStore extends Store<SlashCommand> {
 
 		// This will split the slash commands between global and guild only.
 		const slashCommands = this.container.stores.get('slashCommands');
-		// @ts-expect-error It is not undefined
 		const [guildCmds, globalCmds] = slashCommands?.partition((c) => c.guildOnly);
 
 		// iterate to all connected guilds and apply the commands.
 		const guilds = await client?.guilds?.fetch(); // retrieves Snowflake & Oauth2Guilds
 		for (let [id] of guilds) {
 			const guild = await client?.guilds?.fetch(id); // gets the guild instances from the cache (fetched before)
-			await guild?.commands.set(guildCmds.map((c: SlashCommand) => c.commandData));
+			await guild?.commands.set(guildCmds.map((c) => c.commandData));
 		}
 
 		// Global commands will update over the span of an hour and is discouraged to update on development mode.

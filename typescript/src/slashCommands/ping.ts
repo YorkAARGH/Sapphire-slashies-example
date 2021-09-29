@@ -7,7 +7,7 @@
  *
  */
 import type { PieceContext } from '@sapphire/framework';
-import type { CommandInteraction } from 'discord.js';
+import type { CommandInteraction, Message } from 'discord.js';
 import { SlashCommand } from '../lib/structures/SlashCommandPiece';
 
 export class Ping extends SlashCommand {
@@ -24,8 +24,7 @@ export class Ping extends SlashCommand {
 		await interaction.deferReply();
 		const reply = await interaction.editReply('Ping?');
 		await interaction.editReply(
-			// @ts-expect-error code is perfecto
-			`Pong! Latency is ${reply.createdTimestamp - interaction.createdTimestamp}ms. API Latency is ${Math.round(
+			`Pong! Latency is ${(reply as Message).createdTimestamp - interaction.createdTimestamp}ms. API Latency is ${Math.round(
 				this.container.client.ws.ping
 			)}ms.`
 		);

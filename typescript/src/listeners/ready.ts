@@ -39,7 +39,6 @@ export class Ready extends Listener {
 		if (slashCommandsStore) {
 			try {
 				console.log(blue('Started refreshing application (/) commands.'));
-				// @ts-expect-error i said stop
 				await slashCommandsStore.registerCommands();
 				console.log(green('Successfully reloaded application (/) commands.'));
 			} catch (err: any) {
