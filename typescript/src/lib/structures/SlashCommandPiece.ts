@@ -1,5 +1,5 @@
 import { Piece, PieceContext } from '@sapphire/framework';
-import type { Awaited } from '@sapphire/utilities';
+import type { Awaitable } from '@sapphire/utilities';
 import type { ApplicationCommandData, ApplicationCommandOptionData, CommandInteraction } from 'discord.js';
 
 export abstract class SlashCommand extends Piece {
@@ -22,7 +22,7 @@ export abstract class SlashCommand extends Piece {
 		this.guildOnly = options.guildOnly ?? false;
 	}
 	
-	public abstract run(interaction: CommandInteraction): Awaited<unknown>;
+	public abstract run(interaction: CommandInteraction): Awaitable<unknown>;
 }
 
 export type Options = ApplicationCommandData & {
