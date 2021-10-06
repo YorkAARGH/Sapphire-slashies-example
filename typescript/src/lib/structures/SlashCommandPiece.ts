@@ -1,5 +1,5 @@
 import { Piece, PieceContext } from '@sapphire/framework';
-import type { ApplicationCommandData, ApplicationCommandOptionData, ApplicationCommandPermissions, CommandInteraction } from 'discord.js';
+import type { ApplicationCommandData, ApplicationCommandOptionData, CommandInteraction } from 'discord.js';
 import type { Awaited } from '@sapphire/utilities';
 
 export class SlashCommand extends Piece {
@@ -14,7 +14,7 @@ export class SlashCommand extends Piece {
 			name: this.name,
 			description: options.description ?? 'No description provided',
 			options: options.options ?? [],
-			defaultPermission: options.defaultPermission! ?? true
+			defaultPermission: options.defaultPermission ?? true
 		};
 
 		// This line is a juicy one, and only comes into effect if you're loading
@@ -29,6 +29,6 @@ export class SlashCommand extends Piece {
 export type Options = ApplicationCommandData & {
 	description: string;
 	options?: ApplicationCommandOptionData[];
-	defaultPermission?: ApplicationCommandPermissions;
+	defaultPermission?: boolean;
 	guildOnly?: boolean;
 };
