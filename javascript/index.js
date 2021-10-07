@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "./src/.env" });
+require("dotenv").config({ path: "./.env" });
 const { SapphireClient } = require("@sapphire/framework");
 require("@sapphire/plugin-logger/register");
 
