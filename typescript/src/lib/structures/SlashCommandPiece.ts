@@ -1,8 +1,8 @@
 import { Piece, PieceContext } from '@sapphire/framework';
+import type { Awaitable } from '@sapphire/utilities';
 import type { ApplicationCommandData, ApplicationCommandOptionData, CommandInteraction } from 'discord.js';
-import type { Awaited } from '@sapphire/utilities';
 
-export class SlashCommand extends Piece {
+export abstract class SlashCommand extends Piece {
 	public readonly commandData: Options;
 	public readonly guildOnly: boolean;
 	constructor(context: PieceContext, options: Options) {
@@ -21,9 +21,8 @@ export class SlashCommand extends Piece {
 		// both global and guild commands alike, true for guild, false for global.
 		this.guildOnly = options.guildOnly ?? false;
 	}
-	// @ts-expect-error i dont know how to implement or immediately
-	// follow the declaration
-	public run(interaction: CommandInteraction): Awaited<unknown>;
+	
+	public abstract run(interaction: CommandInteraction): Awaitable<unknown>;
 }
 
 export type Options = ApplicationCommandData & {

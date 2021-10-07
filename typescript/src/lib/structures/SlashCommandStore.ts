@@ -10,7 +10,7 @@ export class SlashCommandStore extends Store<SlashCommand> {
 	constructor() {
 		// This is the name of the directory we want to look in for our slash
 		// commands.
-		super(SlashCommand, { name: 'slashCommands' });
+		super(SlashCommand as any, { name: 'slashCommands' });
 	}
 
 	async registerCommands() {
